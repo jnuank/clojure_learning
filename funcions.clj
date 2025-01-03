@@ -121,8 +121,19 @@
 
 (do-nothing 1)
 
+; 5
 (defn always-thing [_] 100)
 
 (always-thing "a")
 
 
+
+; 6
+(import '(java.lang Integer))
+
+(require '[clojure.core])
+(let [n (rand-int Integer/MAX_VALUE)
+      f (make-thingy n)]
+  (assert (= n (f))))
+
+(#(.length %) "a")
