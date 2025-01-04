@@ -131,10 +131,11 @@
 ; 6
 (import '(java.lang Integer))
 
-(defn make-thingy [x] (fn [_] 100))
-(let [n 100
+(defn make-thingy [x] (fn [_, & _] x))
+(let [n 99 
       f (make-thingy n)]
   (assert (= n (f)))
-  )
+  (assert (= n (f 123)))
+  (assert (= n (apply f 123 (range)))))
 
 (#(.length %) "a")
