@@ -131,7 +131,7 @@
 ; 6
 (import '(java.lang Integer))
 
-(defn make-thingy [x] (fn [_, & _] x))
+(defn make-thingy [x] (constantly x))
 (let [n 99 
       f (make-thingy n)]
   (assert (= n (f)))
