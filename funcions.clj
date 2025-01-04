@@ -131,6 +131,7 @@
 ; 6
 (import '(java.lang Integer))
 
+; constantly 常に
 (defn make-thingy [x] (constantly x))
 (let [n 99 
       f (make-thingy n)]
@@ -138,4 +139,26 @@
   (assert (= n (f 123)))
   (assert (= n (apply f 123 (range)))))
 
-(#(.length %) "a")
+; 7
+
+(defn triplicate [f] (f) (f) (f))
+
+(triplicate messenger)
+
+; 8
+(defn opposite [f]
+  (fn [& args] (not (apply f args))))
+
+(let [f (opposite list?)]
+  (f '(1 2)))
+
+; 9
+
+(defn triplicate2 [f & args]
+  (triplicate #(apply f args)))
+
+; (apply f args) ←　applyという関数を f argsを入れて実行
+; #(apply f args) ← apply f argsを実行する関数
+; fn [_] (apply f args) ← 2つ目の完全系
+
+(triplicate2 println "hello ")
