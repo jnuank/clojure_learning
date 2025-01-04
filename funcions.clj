@@ -131,8 +131,8 @@
 ; 6
 (import '(java.lang Integer))
 
-(require '[clojure.core])
-(let [n (rand-int Integer/MAX_VALUE)
+(defn make-thingy [x] (fn [_] x))
+(let [n 100
       f (make-thingy n)]
   (assert (= n (f))))
 
