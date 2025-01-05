@@ -182,3 +182,21 @@
 
 (assert (.contains (http-get "https://www.w3.org") "html"))
 
+; 12
+
+(defn one-less-arg [f x]
+  (fn [& args] (apply f x args)))
+
+(let [f (one-less-arg println "hello")]
+  (f "world" "test" "dayo"))
+
+; partialはより一般的な関数
+(def partial-test (partial println))
+
+(partial-test "hell" "aaa")
+
+; 13
+(defn two-fns [f g] (fn [x] (f (g x))))
+
+(let [f (two-fns + *)]
+  (f 5))
