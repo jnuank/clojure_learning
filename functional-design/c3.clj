@@ -50,7 +50,7 @@
    (cond 
      (< n 1) nil
    	 (<= n 2) 1
-   	 :else (recur (- n 2) 1 1))))
+   	 :else (ifib (- n 2) 1 1))))
 
 (time (fib 20))
 
@@ -93,7 +93,25 @@
 
 (defn factorial [n]
   (cond
-    (= n 0) 1
-    :else (factorial (* n (dec n)))))
+    (<= n 1) 1
+   	(= n 2) 2
+    :else (* (* n (dec n)) (factorial (- n 2)))))
 
-(factorial 5)
+(def factorial-memo (memoize factorial))
+
+(defn factorial2 [n acc]
+  (cond
+    (<= n 1) (* acc 1)
+    :else (recur (- n 2) (* acc (* n (dec n))))))
+
+; 5! = 5 * 4 * 3 * 2 * 1
+
+(time (factorial 5))
+
+(time (factorial 10000))
+
+(time (factorial-memo 500))
+
+(time (factorial2 100000 1))
+
+(+ 0 (* 3 (dec 3)))
