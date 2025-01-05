@@ -162,3 +162,23 @@
 ; fn [_] (apply f args) ← 2つ目の完全系
 
 (triplicate2 println "hello ")
+
+; 10
+
+; 11
+
+(require '(clojure.core/slurp))
+
+(defn http-get [url]
+  ;; slurp自体が、そもそも引数をURLとして解釈するらしい
+  (slurp url))
+
+(defn http-get [url]
+ (slurp
+  ;; インスタンスメソッド。この場合は、URLクラスのインスタンスメソッドか。 
+  (.openStream
+   ;; インスタンス化
+   (java.net.URL. url))))
+
+(assert (.contains (http-get "https://www.w3.org") "html"))
+
