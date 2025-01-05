@@ -45,12 +45,12 @@
   ([n a b]
    (if (= 0 n)
      b
-     (ifib (dec n) b (+ a b)))) 
-  ([n]
+     (recur (dec n) b (+ a b)))) 
+  ([n] ; ここが1コだけしかもらわないから、1つまでしか受けつかないのか
    (cond 
      (< n 1) nil
    	 (<= n 2) 1
-   	 :else (ifib (- n 2) 1 1))))
+   	 :else (recur (- n 2) 1 1))))
 
 (time (fib 20))
 
@@ -74,3 +74,26 @@
 (def memot (memoize fib-w))
 
 (time (memot 1000))
+
+;; hello world fizz buzz
+
+(defn fizz-buzz
+  [n]
+  (cond
+    (= 0 (mod n 15)) "fizzbuzz"
+    (= 0 (mod n 5)) "buzz"
+    (= 0 (mod n 3)) "fizz"
+    :else n))
+
+(fizz-buzz 30)
+
+(map fizz-buzz (range 1 16))
+
+;; sum
+
+(defn factorial [n]
+  (cond
+    (= n 0) 1
+    :else (factorial (* n (dec n)))))
+
+(factorial 5)
