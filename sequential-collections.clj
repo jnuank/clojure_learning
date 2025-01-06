@@ -9,6 +9,11 @@
 
 (vector 1 2 3)
 
+(vector)
+
+'(1 2 3)
+(list 1 2 3)
+
 (conj [1 2 3] 4 5 6)
 
 (def v [1 2 3])
@@ -76,3 +81,11 @@ stack
 (pop v)
 ; [1 2]
 ; 末尾のものを除外して値を返す
+
+(def r (range 10000))
+
+(get r 1)
+
+(def r '("a" "b" "c"))
+
+(time (nth r 1))
