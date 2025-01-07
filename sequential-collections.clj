@@ -48,11 +48,6 @@ v
 
 (peek stack)
 
-(doc peek)
-(doc pop)
-
-stack
-
 (pop stack)
 
 (peek v)
