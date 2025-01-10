@@ -80,3 +80,50 @@
 (do 1 2 3 )
 ; 3
 
+; loop
+
+(loop [i 0]
+  (if (< i 10)
+    (recur (inc i))
+    i))
+
+
+(defn increase [i]
+  (if (< i 10)
+    (recur (inc i))
+    i))
+
+(increase 0)
+
+; exceptions
+
+
+(try
+  (/ 2 1)
+  (catch ArithmeticException e
+    "divide by zero")
+    (finally
+      (println "clean up")))
+
+; throw
+(try
+  (throw (Exception. "something went wrong"))
+  (catch Exception e (.getMessage e)))
+
+; with clojure data
+
+(try
+  (throw (ex-info "There was a problem" {:detail 42}))
+  (catch Exception e
+    (prn (:detail (ex-data e)))))
+
+(let [f (clojure.java.io/writer "/tmp/new")]
+  (try
+    (.write f "some text")
+    (finally
+      (.close f))))
+
+; Can be written
+(with-open [f (clojure.java.io/writer "/tmp/new2")]
+  (.write f "some taaaaext"))
+
