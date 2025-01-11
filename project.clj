@@ -6,4 +6,4 @@
                                   [cider/cider-nrepl "0.28.5"]]
                    :plugins [[cider/cider-nrepl "0.28.5"]]}}
   :plugins [[speclj "3.6.0"]]
-  :test-paths ["spec"])
+  :test-paths ["test"])
