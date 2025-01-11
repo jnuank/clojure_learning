@@ -3,13 +3,14 @@
 
 
 (defn prime-factors-of [n]
-  (if (> n 1) 
-    (if (zero? (rem n 2))
-      (cons 2 (prime-factors-of (/ n 2)))
-      (if (zero? (rem n 3))
-        (cons 3 (prime-factors-of (/ n 3)))
-        [n]))
-    []))
+  (loop [n n
+         divisor 2
+         factors []]
+  (if (> n 1)
+    (if (zero? (rem n divisor))
+      (recur (/ n divisor) divisor (conj factors divisor))
+      (recur n (inc divisor) factors))
+    factors)))
 
 
 (t/run-tests)
@@ -39,3 +40,41 @@
   (t/testing "9の因数分解"
     (t/is (= [3 3] (prime-factors-of 9))))
   )
+
+
+; 確認用
+
+(->> [2]
+ (cons 4)
+ (cons 3))
+
+(defn recur-check [n]
+  (if (zero? n)
+    []
+    (do (println n) (cons n (recur-check (dec n))))))
+
+(defn iteration-check [n]
+  (loop [n n
+         acc []]
+    (if (> n 0)
+      (do (println n)(recur (dec n) (cons n acc)))
+      acc)))
+
+
+(iteration-check 3)
+; これと一緒
+(cons 1 [2 3])
+; [2 3]はこれと一緒
+(cons 2 [3])
+; [3]はこれと一緒
+(cons 3 [])
+
+; recurでTOCが実行されると、goto文ぽくなるので、毎loopごとに関数が実行されて値が評価される
+; 3から1までlistの先頭にくっつける処理をしているので、[1 2 3]
+
+(recur-check 3)
+; これと一緒
+(cons 3 (cons 2 (cons 1 [])))
+
+; 再帰で呼び出すと、スタックしていき、最後に呼び出された関数から順番に呼び出される
+; (cons 3 (cons 2 (cons 1 [])))という形になり、1から3までlistの先頭にくっつける処理
