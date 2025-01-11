@@ -13,4 +13,7 @@
 
   (t/testing "すべて1ピン"
     (t/is (= 20 (score (take 20 (repeat 1))))))
+
+  (t/testing "1回スペア"
+    (t/is (= 24 (score [5 5 7]))))
  	)
