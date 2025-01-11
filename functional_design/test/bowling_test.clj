@@ -4,11 +4,12 @@
 (defn- to-frames [rolls]
   (partition 2 rolls))
 
+(defn add-frame [score frame]
+  (+ score (reduce + frame)))
 
 (defn score [rolls]
-	(reduce + (flatten (to-frames rolls)))
+	(reduce add-frame 0 (to-frames rolls))
   )
-
 
 (t/run-tests)
 
@@ -20,5 +21,5 @@
     (t/is (= 20 (score (take 20 (repeat 1))))))
 
   (t/testing "1回スペア"
-    (t/is (= 24 (score [5 5 7]))))
+    (t/is (= 24 (score (concat [5 5 7] (take 17 (repeat 0)))))))
  	)
