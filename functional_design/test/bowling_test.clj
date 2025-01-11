@@ -2,10 +2,15 @@
   (:require [clojure.test :as t]))
 
 
-(defn score [rolls] 0)
+(defn score [rolls]
+  (reduce + rolls))
 
 (t/run-tests)
 
 (t/deftest bowling-score
   (t/testing "オールガーター"
-    (t/is (= 0 (score (take 20 (repeat 0)))))))
+    (t/is (= 0 (score (take 20 (repeat 0)))))) 
+
+  (t/testing "すべて1ピン"
+    (t/is (= 20 (score (take 20 (repeat 1))))))
+ 	)
