@@ -3,7 +3,9 @@
 
 
 (defn score [rolls]
-  (reduce + rolls))
+	(reduce + (flatten (partition 2 rolls)))
+  )
+
 
 (t/run-tests)
 
