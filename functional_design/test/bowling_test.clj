@@ -1,9 +1,12 @@
 (ns functional-design.test.bowling-test
   (:require [clojure.test :as t]))
 
+(defn- to-frames [rolls]
+  (partition 2 rolls))
+
 
 (defn score [rolls]
-	(reduce + (flatten (partition 2 rolls)))
+	(reduce + (flatten (to-frames rolls)))
   )
 
 
