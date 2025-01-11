@@ -1,11 +1,15 @@
 (ns functional-design.spec.chapter6
-  (:require [speclj.core :refer [should=]]))
+  (:require [speclj.core :refer :all]))
 
-(should= 1 2)
-
-(should= 1 1)
 
 (defn prime-factors-of [n]
   [])
-(should= [1] (prime-factors-of 1))
 
+(describe "素因数分解" 
+ (it "1の素因数分解はなし"
+   (should= [2] (prime-factors-of 1)))
+
+ (it "test"
+   (should= 1 1)))
+
+(run-specs)
