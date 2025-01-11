@@ -3,7 +3,7 @@
 
 
 (defn prime-factors-of [n]
-  (if (> n 1) [2] []))
+  (if (> n 1) [n] []))
 
 (t/run-tests)
 
@@ -12,4 +12,7 @@
     (t/is (= [] (prime-factors-of 1))))
   
   (t/testing "2の因数分解"
-    (t/is (= [2] (prime-factors-of 2)))))
+    (t/is (= [2] (prime-factors-of 2))))
+  
+  (t/testing "3の因数分解"
+    (t/is (= [3] (prime-factors-of 3)))))
