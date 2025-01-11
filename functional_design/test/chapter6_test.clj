@@ -34,11 +34,17 @@
   (t/testing "6の因数分解"
     (t/is (= [2 3] (prime-factors-of 6))))
 
+  (t/testing "7の因数分解"
+    (t/is (= [7] (prime-factors-of 7))))
+
   (t/testing "8の因数分解"
     (t/is (= [2 2 2] (prime-factors-of 8))))
 
   (t/testing "9の因数分解"
     (t/is (= [3 3] (prime-factors-of 9))))
+
+  (t/testing "10の因数分解"
+    (t/is (= [2 5] (prime-factors-of 10))))
   )
 
 
