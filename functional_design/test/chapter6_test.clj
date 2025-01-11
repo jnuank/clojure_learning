@@ -3,10 +3,13 @@
 
 
 (defn prime-factors-of [n]
-  [])
+  (if (> n 1) [2] []))
+
+(t/run-tests)
 
 (t/deftest prime-factors
   (t/testing "1の素因数分解はなし"
-    (t/is (= [1] (prime-factors-of 1)))))
-
-(t/run-tests)
+    (t/is (= [] (prime-factors-of 1))))
+  
+  (t/testing "2の因数分解"
+    (t/is (= [2] (prime-factors-of 2)))))
