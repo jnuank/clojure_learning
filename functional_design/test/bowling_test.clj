@@ -8,11 +8,22 @@
     (cond
       (empty? remaining-rolls) frames
 
+      (= 10 (first remaining-rolls))
+      (recur (rest remaining-rolls) (conj frames (take 3 remaining-rolls)))
+
       (= 10 (reduce + (take 2 remaining-rolls)) )
       (recur (drop 2 remaining-rolls) (conj frames (take 3 remaining-rolls)))
 
       :else
    	  (recur (drop 2 remaining-rolls) (conj frames (take 2 remaining-rolls))))))
+
+(first [10 2 3])
+(take 1 [10 2 3])
+
+(= 10 (first  [10 2 3]))
+
+(rest [10 2 3])
+(drop 1 [10 2 3])
 
 ; フレームごとにただた計算するだけ
 (defn frame-score [score frame-and-bonus]
@@ -31,4 +42,7 @@
     (t/is (= 20 (score (take 20 (repeat 1))))))
 
   (t/testing "1回スペア"
-    (t/is (= 24 (score (concat [5 5 7] (take 17 (repeat 0))))))))
+    (t/is (= 24 (score (concat [5 5 7] (take 17 (repeat 0)))))))
+
+  (t/testing "1回ストライク"
+    (t/is (= 20 (score (concat [10 2 3] (take 16 (repeat 0))))))))
