@@ -15,11 +15,11 @@
    	  (recur (drop 2 remaining-rolls) (conj frames (take 2 remaining-rolls))))))
 
 ; フレームごとにただた計算するだけ
-(defn add-frame [score frame-and-bonus]
+(defn frame-score [score frame-and-bonus]
   (+ score (reduce + frame-and-bonus)))
 
 (defn score [rolls]
-  (reduce add-frame 0 (to-frames rolls)))
+  (reduce frame-score 0 (to-frames rolls)))
 
 (t/run-tests)
 
