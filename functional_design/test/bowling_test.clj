@@ -1,18 +1,22 @@
 (ns functional-design.test.bowling-test
   (:require [clojure.test :as t]))
 
+; スペアのときのフレームボーナスをつけて、フレーム化している
 (defn to-frames [rolls]
-  (let [frames (partition 2 rolls)
-        possible-bonuses (map #(take 1 %) (rest frames))
-        possible-bonuses (concat possible-bonuses [[0]])]
-    (map concat frames possible-bonuses)))
+  (loop [remaining-rolls rolls
+         frames []]
+    (cond
+      (empty? remaining-rolls) frames
 
-; add-frameの中にスペアかどうかのチェックが入り込んでいる
+      (= 10 (reduce + (take 2 remaining-rolls)) )
+      (recur (drop 2 remaining-rolls) (conj frames (take 3 remaining-rolls)))
+
+      :else
+   	  (recur (drop 2 remaining-rolls) (conj frames (take 2 remaining-rolls))))))
+
+; フレームごとにただた計算するだけ
 (defn add-frame [score frame-and-bonus]
-  (let [frame (take 2 frame-and-bonus)]
-    (if (= 10 (reduce + frame))
-      (+ score (reduce + frame-and-bonus))
-      (+ score (reduce + frame)))))
+  (+ score (reduce + frame-and-bonus)))
 
 (defn score [rolls]
   (reduce add-frame 0 (to-frames rolls)))
