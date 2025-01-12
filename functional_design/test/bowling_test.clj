@@ -7,6 +7,7 @@
         possible-bonuses (concat possible-bonuses [[0]])]
     (map concat frames possible-bonuses)))
 
+; add-frameの中にスペアかどうかのチェックが入り込んでいる
 (defn add-frame [score frame-and-bonus]
   (let [frame (take 2 frame-and-bonus)]
     (if (= 10 (reduce + frame))
