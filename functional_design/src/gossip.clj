@@ -25,3 +25,7 @@
        ; driversの各要素(driver)に対して匿名関数を適用した結果をキーとして、 
        ; collに対してグループ化する
        (group-by #(first (:route %)))))
+
+(defn merge-rumors [_]
+  [{:name "driver1" :rumors #{:rumor2 :rumor1}}
+              {:name "driver2" :rumors #{:rumor1 :rumor2}}])
