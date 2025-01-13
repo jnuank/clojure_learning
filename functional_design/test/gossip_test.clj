@@ -1,8 +1,7 @@
 (ns functional-design.test.gossip-test
-  (:require [clojure.test :as t]))
+  (:require [clojure.test :as t]
+            [functional-design.src.gossip :refer [make-driver]]))
 
-(defn make-driver [name]
-  {:name name})
 
 (t/run-tests)
 
@@ -10,6 +9,6 @@
   (t/testing "とりあえず"
     (t/is (= 1 1)))
 
- 	(t/testing "driverつくる"
-   	(t/is (= {:name "driver1"} (make-driver "driver1")))))
+  (t/testing "driverつくる"
+    (t/is (= {:name "driver1"} (make-driver "driver1")))))
 
