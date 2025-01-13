@@ -2,9 +2,25 @@
   (:require [clojure.test :as t]
             [functional-design.src.gossip :refer :all]))
 
-(t/run-tests)
+
+(def test-driver1 (make-driver "driver1" [:stop1] #{:rumors1}))
+(def test-driver2 (make-driver "driver2" [:stop1] #{:rumors2}))
+
+(defn test-fixture [f]
+  
+  (println "test-fixture")
+  (f)
+  (println "test-fixture end")
+  
+  )
+
+(t/use-fixtures :each test-fixture)
 
 (t/deftest gossip-test
+  ;; (t/is (= test-driver1 (make-driver "driver1" [:stop1] #{:rumors2})))
+
+  ;; (t/is (= world [test-driver1 ]))
+
   (t/testing "driverつくる"
     (t/is (= {:name "driver1" :route [:stop1] :rumors #{:rumors1}}
              (make-driver "driver1" [:stop1] #{:rumors1}))))
@@ -49,5 +65,6 @@
     (t/is (= [{:name "driver1" :rumors #{:rumor2 :rumor1}}
               {:name "driver2" :rumors #{:rumor1 :rumor2}}]
              (merge-rumors [{:name "driver1" :rumors #{:rumor1}}
-                            {:name "driver2" :rumors #{:rumor2}}]))))
-  )
+                            {:name "driver2" :rumors #{:rumor2}}])))))
+
+(t/run-tests)
