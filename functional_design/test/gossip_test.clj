@@ -48,5 +48,6 @@
   (t/testing "噂話をする"
     (t/is (= [{:name "driver1" :rumors #{:rumor2 :rumor1}}
               {:name "driver2" :rumors #{:rumor1 :rumor2}}]
-             (merge-rumors []))))
+             (merge-rumors [{:name "driver1" :rumors #{:rumor1}}
+                            {:name "driver2" :rumors #{:rumor2}}]))))
   )

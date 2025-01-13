@@ -1,4 +1,6 @@
-(ns functional-design.src.gossip)
+(ns functional-design.src.gossip 
+  (:require
+   [clojure.set :refer [union]]))
 
 
 (defn make-driver [name route rumors]
@@ -26,6 +28,6 @@
        ; collに対してグループ化する
        (group-by #(first (:route %)))))
 
-(defn merge-rumors [_]
-  [{:name "driver1" :rumors #{:rumor2 :rumor1}}
-              {:name "driver2" :rumors #{:rumor1 :rumor2}}])
+(defn merge-rumors [drivers]
+  (let [rumors (apply union (map :rumors drivers))]
+    (map #(assoc % :rumors rumors) drivers)))
