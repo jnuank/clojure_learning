@@ -1,5 +1,5 @@
 (ns functional-design.src.gossip)
 
 
-(defn make-driver [name]
-  {:name name})
+(defn make-driver [name route rumors]
+  {:name name :route route :rumors rumors})
