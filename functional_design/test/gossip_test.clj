@@ -43,4 +43,10 @@
       (t/is (= {:stop1 [{:name "driver1" :route [:stop1]}
                         {:name "driver2" :route [:stop1]}]
                 :stop2 [{:name "driver3" :route [:stop2]}]}
-               (get-stops drivers))))))
+               (get-stops drivers)))))
+
+  (t/testing "噂話をする"
+    (t/is (= [{:name "driver1" :rumors #{:rumor2 :rumor1}}
+              {:name "driver2" :rumors #{:rumor1 :rumor2}}]
+             (merge-rumors []))))
+  )
