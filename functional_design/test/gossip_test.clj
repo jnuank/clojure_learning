@@ -69,8 +69,10 @@
 
   (t/testing "ドライバーが同じバス停に停まったら噂話が共有される"
     
-    (let [new-world [{:rumors #{:rumors1 :rumors2}} {:rumors #{:rumors1 :rumors2}}]
-          
+    (let [ d1 (make-driver "driver1" [:stop1 :stop2] #{:rumors1})
+          d2 (make-driver "driver2" [:stop1 :stop2] #{:rumors2})
+          world [d1 d2] 
+          new-world (drive world)
           ] 
       (t/is (= 2 (count new-world)))
       (t/is (= #{:rumors1 :rumors2} (-> new-world first :rumors)))
