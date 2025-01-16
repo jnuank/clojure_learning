@@ -69,10 +69,12 @@
 
   (t/testing "ドライバーが同じバス停に停まったら噂話が共有される"
     
-    (let [new-world [{:rumors #{:rumors1 :rumors2}} {}]
+    (let [new-world [{:rumors #{:rumors1 :rumors2}} {:rumors #{:rumors1 :rumors2}}]
           
           ] 
       (t/is (= 2 (count new-world)))
-      (t/is (= #{:rumors1 :rumors2} (-> new-world first :rumors))))))
+      (t/is (= #{:rumors1 :rumors2} (-> new-world first :rumors)))
+      (t/is (= #{:rumors1 :rumors2} (-> new-world second :rumors)))))
+)
 
 (t/run-tests)
