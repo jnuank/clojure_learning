@@ -1,0 +1,8 @@
+{:paths ["src" "test"]
+ :deps {
+   ;; 既存の依存関係
+ }
+ :aliases
+ {:dev
+  {:extra-paths ["dev"]
+   :extra-deps {}}}} 

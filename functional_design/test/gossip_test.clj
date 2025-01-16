@@ -65,6 +65,13 @@
     (t/is (= [{:name "driver1" :rumors #{:rumor2 :rumor1}}
               {:name "driver2" :rumors #{:rumor1 :rumor2}}]
              (merge-rumors [{:name "driver1" :rumors #{:rumor1}}
-                            {:name "driver2" :rumors #{:rumor2}}])))))
+                            {:name "driver2" :rumors #{:rumor2}}]))))
+
+  (t/testing "ドライバーが同じバス停に停まったら噂話が共有される"
+    
+    (let [new-world [1 2]
+          
+          ] 
+      (t/is (= 2 (count new-world))))))
 
 (t/run-tests)

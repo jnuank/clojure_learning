@@ -1,0 +1,13 @@
+{
+  "calva.replConnectSequences": [
+    {
+      "name": "Your Project Dev",
+      "projectType": "deps.edn",
+      "afterCLJReplJackInCode": "(reset)",
+      "cljsType": false,
+      "menuSelections": {
+        "cljAliases": ["dev"]
+      }
+    }
+  ]
+} 
