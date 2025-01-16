@@ -10,8 +10,14 @@
   (let [new-route (vec (concat (rest (:route driver)) [(first (:route driver))]))]
     (assoc driver :route new-route)))
 
+(defn merge-rumors [drivers]
+  (let [rumors (apply union (map :rumors drivers))]
+    (map #(assoc % :rumors rumors) drivers)))
+
 (defn drive [drivers]
-  (map #(drive-route %) drivers))
+  (->> drivers
+       (map #(drive-route %))
+       (merge-rumors)))
 
 (let [driver1 (make-driver "driver1" [:s1 :s2 :s3] #{:r1})
       driver2 (make-driver "driver2" [:s2 :s3 :s4] #{:r1})]
@@ -25,6 +31,3 @@
        ; collに対してグループ化する
        (group-by #(first (:route %)))))
 
-(defn merge-rumors [drivers]
-  (let [rumors (apply union (map :rumors drivers))]
-    (map #(assoc % :rumors rumors) drivers)))
