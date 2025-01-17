@@ -17,10 +17,6 @@
 (t/use-fixtures :each test-fixture)
 
 (t/deftest gossip-test
-  ;; (t/is (= test-driver1 (make-driver "driver1" [:stop1] #{:rumors2})))
-
-  ;; (t/is (= world [test-driver1 ]))
-
   (t/testing "driverつくる"
     (t/is (= {:name "driver1" :route [:stop1] :rumors #{:rumors1}}
              (make-driver "driver1" [:stop1] #{:rumors1}))))
